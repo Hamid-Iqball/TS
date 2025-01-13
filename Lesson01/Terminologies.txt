@@ -1,0 +1,9 @@
+Strongly Typed Languages: Demand the specfication of data types and that is what we do in TS, TS is strongly typed language and we have to exclusively specify what type for data.
+
+Loosly typed Language: It does not require type specfication Js is loosly typed language.
+
+A languge that is strongly typed can be either statically or dyanmically typed.TS is statically typed which means types are checked at compile time.
+
+Js is dyanmically types language this means types are checked at run time.
+
+When Ts does not figure out what type your value is, it assigned type "Any" to it.
