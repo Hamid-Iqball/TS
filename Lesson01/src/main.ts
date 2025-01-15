@@ -111,7 +111,6 @@ enum Grade {
 console.log(Grade.A)
 
 
-*/
 
 
 //######################################
@@ -198,3 +197,50 @@ return a+nums.reduce((prev,cur)=>(prev+cur))
 }
 
 logMsg(total(2,1,2,3,4,4))
+
+
+//Never type: This is for function that explicitly throw error, or if a function has infinite loop inside then the type will also be never. And if there is no explicit retun the type of that function will be void.
+
+const isNumber = (value:any):boolean=>{
+    return typeof value === 'number'?true:false
+}
+
+
+const numberOrSyring = (value:number|string):string =>{
+    if (typeof value === 'string') return 'string'
+    if(isNumber(value)) return "number"
+
+    
+}
+
+
+1) Type Aliases
+2)Functions
+3) Never type
+
+*/
+
+
+//###################################################
+//         Type Assertion || Type Casting
+//###################################################
+
+//Some time you will have information about the type of a value that TypeScript can't know about, this come into way when we are working with the DOM.
+
+type One = string
+type two = number | string
+type Three = 'hello'
+
+//Convert to more or less specific 
+
+let a:One = 'hello'
+let b=a as two // less specific type
+let c = a as Three // more specific
+
+
+let d = <One>'world'
+let e = <string | number>'world'
+
+let addOrConcat = (a:number, b:number,c:'add' | "concat"):number =>{
+
+}
