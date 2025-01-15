@@ -1,68 +1,47 @@
 "use strict";
 // let userName = "Hamid iqbal here"
 // console.log(userName)
-// let a: number = 12;
-// let b:string ="4"
-// let c:number =5;
-// // JavasScript used dyanimc types and therefore it coersed the data becasue it usedd the dynamic type instead of static type.
-// console.log(a/b)
-//Lesson 02
-/*
-let myName:string = "Hamid";
-let meaningOfLife:number;
-let isLoading:boolean;
-let album:number | string;// Union type. this can me more than one data type.
-
-myName="Iqbal";
-meaningOfLife=42;
-isLoading=true;
-album=1982
-
-const sum =(a:number,b:number)=>{
-    return a+b;
-}
-*/
-//#########Lesson 03: Objects, Array ############
-let stringArr = ['one', 'two', 'three'];
-let cities = ['psh', 'isb', 'lhe', 1923];
-let mixedDATA = ['evh', 1923, true];
-cities = mixedDATA; //This is not acceptible in TS
-mixedDATA = cities; //This is acceptiable in TS.
-stringArr.push("2");
-let test = [];
-let bands = [];
-//Tupple : If want to be strict about the lenght of an array or the order of type of data.
-let myTupple = ["dav", 3, false]; // This is tupple
-let mixed = ['dav', 4, true]; // This is union
-//myTupple = mixed  one is tupple and other one is union , The tupple is not assignable to union because in union there are no restriction on order.
-// #########Objects #########
-let myObj;
-myObj = [];
-console.log(typeof myObj);
-myObj = cities;
-const example = {
-    prop1: "Dave",
-    prop2: true,
+//Literal Types
+let myName;
+let userName;
+//Type literals and Aliases can possibly make our cide DRY(don't repeat yourself)
+//######################################
+//             Functions
+//######################################
+const add = (a, b) => {
+    return a + b;
 };
-example.prop1 = "jhon";
-// Interface can be extending like in classes and it is also used for defining the shape of an object type allow defining complex types using unions and intersection.
-let evh = {
-    name: "Hamid",
-    active: false,
-    album: ["1980", 2024, 454]
+//Any function that does not have an explicit return is void which essentialy means there is no return at all. It indicate that the purpose of this function is to perform side effect, e.g logging to the console or updating a variable, rather than returning data.
+const logMsg = (message) => {
+    console.log(message);
 };
-let jp = {
-    name: "iqbal",
-    active: true,
-    album: ["1980", 4, "3"]
+console.log(logMsg("heyeeee"));
+let subtract = function (c, d) {
+    return c - d;
 };
-jp = evh; // No issue with this because both objects have the same type of key value pairs.
-console.log(evh);
-const greetGuitarist = (guitarist) => {
-    if (guitarist.name) {
-        return `Hello Mr ${guitarist.name.toUpperCase()}`;
+// interface mathFunction { (a:number, b:number):number } /Iterface is also an option. but type Alias suits it.
+console.log(subtract(3, 1));
+let multiply = function (c, d) {
+    return c * d;
+};
+console.log(multiply(2, 4));
+//Optional parameters: optional parameter should be the last in the list 
+const addAll = (a, b, c) => {
+    if (typeof c !== 'undefined') {
+        return a + b + c;
     }
-    return `Hello`;
+    return a + b;
 };
-console.log(greetGuitarist(jp));
-// ########## Enums ########
+//Default Parameter: we can give any param
+const sumAll = (a = 10, b, c = 2) => {
+    return a + b + c;
+};
+logMsg(addAll(1, 2, 3));
+logMsg(sumAll(1, 2));
+logMsg(sumAll(undefined, 4)); // InOrder to skip the first number
+//Default value will not work if we work with a function signature.
+//Reset parameters: The reset operator should comes at the end as well.
+const total = (a, ...nums) => {
+    return a + nums.reduce((prev, cur) => (prev + cur));
+};
+logMsg(total(2, 1, 2, 3, 4, 4));

@@ -28,7 +28,7 @@ const sum =(a:number,b:number)=>{
 
 //#########Lesson 03: Objects, Array ############
 
-
+/*
 let stringArr = ['one','two','three']
 let cities = ['psh','isb','lhe', 1923]
 let mixedDATA=['evh', 1923, true]
@@ -98,3 +98,103 @@ console.log(greetGuitarist(jp))
 
 
 // ########## Enums ########
+//Unlike most Typescript features, Enums are not a type-level addition to JavaScript but something added yo the language and runtime.
+
+enum Grade {
+    U=1,
+    D,
+    C,
+    B,
+    A,
+}
+
+console.log(Grade.A)
+
+
+*/
+
+
+//######################################
+//       Aliases and Type Literals
+//######################################
+
+//Type Aliases: Type Aliases allow us to give name to any type, whether it is built-in, a user-defined type, or a complex combination of types. once defined the Alias can be used like any other type throughout your code, making it easier to read,write and maiantain.
+
+type stringOrNumber = string |  number
+
+type stringOrNumberArray = (string | number)[]
+
+type Guitarist = {
+    name?:string,
+    active:boolean,  // Now this is optional.
+    album:stringOrNumberArray
+}
+
+type userId = stringOrNumber  // This is how we use one type Alias as type for another TypeAliace.We can not do this with interface it can only be done with type.
+
+//Literal Types
+let myName:"Hamid"
+let userName: "Hamid"|"iQBAL"|"AZHAR"
+
+//Type literals and Aliases can possibly make our cide DRY(don't repeat yourself)
+
+
+//######################################
+//             Functions
+//######################################
+
+const add = (a:number, b:number):number =>{
+    return a+b
+}
+
+//Any function that does not have an explicit return is void which essentialy means there is no return at all. It indicate that the purpose of this function is to perform side effect, e.g logging to the console or updating a variable, rather than returning data.
+const logMsg = (message:any): void=>{
+    console.log(message)
+}
+
+console.log(logMsg("heyeeee"))
+
+let subtract = function (c:number,d:number):number{
+return c-d
+}
+
+//Type Aliase  
+type mathFunction = (a:number, b:number) => number
+// interface mathFunction { (a:number, b:number):number } /Iterface is also an option. but type Alias suits it.
+console.log(subtract(3,1))
+
+
+let multiply:mathFunction = function (c,d){
+    return c*d
+}
+
+console.log(multiply(2,4))
+
+
+//Optional parameters: optional parameter should be the last in the list 
+
+const addAll = (a:number, b:number, c?:number)=>{
+    if(typeof c !== 'undefined'){
+        return a+b+c
+    }
+    return a+b
+
+}
+
+
+//Default Parameter: we can give any param
+const sumAll = (a:number=10, b:number, c:number=2)=>{
+    return a+b+c
+}
+
+logMsg(addAll(1,2,3))
+logMsg(sumAll(1,2))
+logMsg(sumAll(undefined,4)) // InOrder to skip the first number
+//Default value will not work if we work with a function signature.
+
+//Reset parameters: The reset operator should comes at the end as well.
+const total = (a:number,...nums:number[]):number=>{
+return a+nums.reduce((prev,cur)=>(prev+cur))
+}
+
+logMsg(total(2,1,2,3,4,4))
