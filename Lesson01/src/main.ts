@@ -241,6 +241,20 @@ let c = a as Three // more specific
 let d = <One>'world'
 let e = <string | number>'world'
 
-let addOrConcat = (a:number, b:number,c:'add' | "concat"):number =>{
+let addOrConcat = (a:number, b:number,c:'add' | "concat"):number|string =>{
+
+if(c==='add'){
+    return a+b
+}
+
+return "" + a + b;
 
 }
+
+
+const myVlal : string = addOrConcat(2,2,'concat') as string
+
+//Be careful TS sees no problem - but a string is returned
+const nextVal: number = addOrConcat(2,2,'concat') as number
+
+
