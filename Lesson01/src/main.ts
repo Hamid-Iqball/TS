@@ -10,6 +10,7 @@
 // console.log(a/b)
 
 //Lesson 02
+/*
 let myName:string = "Hamid";
 let meaningOfLife:number;
 let isLoading:boolean;
@@ -23,4 +24,77 @@ album=1982
 const sum =(a:number,b:number)=>{
     return a+b;
 }
+*/
 
+//#########Lesson 03: Objects, Array ############
+
+
+let stringArr = ['one','two','three']
+let cities = ['psh','isb','lhe', 1923]
+let mixedDATA=['evh', 1923, true]
+
+cities =mixedDATA; //This is not acceptible in TS
+mixedDATA=cities //This is acceptiable in TS.
+
+stringArr.push("2")
+
+let test =[];
+let bands:string[]=[]
+
+//Tupple : If want to be strict about the lenght of an array or the order of type of data.
+let myTupple:[string,number,boolean] = ["dav",3,false] // This is tupple
+let mixed = ['dav',4,true] // This is union
+//myTupple = mixed  one is tupple and other one is union , The tupple is not assignable to union because in union there are no restriction on order.
+
+// #########Objects #########
+let myObj:object
+myObj =[]
+console.log(typeof myObj)
+
+myObj = cities
+
+const example = {
+    prop1:"Dave",
+    prop2:true,
+}
+
+example.prop1 = "jhon"
+
+
+//This is convenient because we define types in advance for our object.
+interface Guitarist {
+    name?:string,
+    active:boolean,  // Now this is optional.
+    album:(string | number)[]
+}
+
+// Interface can be extending like in classes and it is also used for defining the shape of an object type allow defining complex types using unions and intersection.
+let evh:Guitarist = {
+    name:"Hamid",
+    active:false,
+    album:["1980", 2024,454]
+
+}
+let jp:Guitarist = {
+    name:"iqbal",
+    active:true,
+    album:["1980",4,"3"]
+
+}
+jp = evh // No issue with this because both objects have the same type of key value pairs.
+console.log(evh)
+
+const greetGuitarist = (guitarist:Guitarist)=>{
+
+    if(guitarist.name){
+        return `Hello Mr ${guitarist.name.toUpperCase()}`
+    }
+    return `Hello`
+
+}
+
+console.log(greetGuitarist(jp))
+
+
+
+// ########## Enums ########
