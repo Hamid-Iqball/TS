@@ -218,7 +218,7 @@ const numberOrSyring = (value:number|string):string =>{
 2)Functions
 3) Never type
 
-*/
+
 
 
 //###################################################
@@ -271,3 +271,38 @@ const nextImage = <HTMLImageElement>document.getElementById('img') as HTMLImageE
 
 img.src
 myimg.src
+
+*/
+
+
+
+// #####################################
+//               Classes
+//######################################
+
+class Coder {
+    
+    secondLang! :string
+
+    constructor(
+        public readonly name:string,  // Public is called Data modifier this makes our code a little but DRY.
+        public music:string, 
+        private age:number , // only acessiable in this class
+        protected lang:string ='TypeScript' // Lang can be access inside the class but it can also be access in derived classes as well.This is difference between Private and protected
+    ){
+        this.name=name
+        this.music=music
+        this.age=age
+        this.lang= lang
+    }
+
+
+    public getAge (){
+        return `Hello, I'm ${this.age}`
+    }
+}
+
+const Hamid = new Coder('Hamid iqbal' , 'Rock', 24 ,'Urdu')
+console.log(Hamid.getAge())
+console.log(Hamid.age)
+console.log(Hamid.lang)
