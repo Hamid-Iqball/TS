@@ -275,7 +275,6 @@ myimg.src
 */
 
 
-
 // #####################################
 //               Classes
 //######################################
@@ -295,8 +294,8 @@ class Coder {
         this.age=age
         this.lang= lang
     }
-
-
+    
+    
     public getAge (){
         return `Hello, I'm ${this.age}`
     }
@@ -304,5 +303,117 @@ class Coder {
 
 const Hamid = new Coder('Hamid iqbal' , 'Rock', 24 ,'Urdu')
 console.log(Hamid.getAge())
-console.log(Hamid.age)
-console.log(Hamid.lang)
+// console.log(Hamid.age)
+// console.log(Hamid.lang)
+
+class webDev extends Coder {
+    constructor(
+        public computer :string,
+        name:string,
+        music:string,
+        age:number,
+        
+    ){
+        super(name,music,age)
+    this.computer = computer
+  }
+
+  public getLang (){
+    return `I writes in ${this.lang}`
+}
+}
+
+const sarah  = new webDev('mac','sarah','happy',23)
+console.log(sarah.getLang())
+// console.log(sarah.age)
+
+//This is interface, an interface is a way t define the structure that an object should have
+interface Musician{
+    name:string,
+    instrument:string,
+    play(action:string):string
+}
+
+class Guitarist implements Musician {
+    name:string
+    instrument:string
+    constructor(name:string , instrument:string){
+        this.name = name,
+        this.instrument=instrument
+    }
+    
+    
+    play(action: string): string {
+        return `${this.name} has ${action} of ${this.instrument}`
+    }
+}
+
+
+const tariq = new Guitarist('tariq','Rabab')
+console.log(tariq.play('classic'))
+////////////////////////////////////////////////
+
+class Peeps {
+    static count:number = 0
+    static getCount():number {
+        return Peeps.count
+    }
+    
+    public id :number
+    
+
+    constructor(
+        public name:string
+    ){
+        this.name =name
+        this.id = ++Peeps.count
+    }
+
+}
+
+const nasar = new Peeps('nasar')
+const ahmad =new Peeps('ahmad')
+const way = new Peeps('way')
+console.log(nasar.id)
+console.log(ahmad.id)
+console.log(way .id)
+
+/////////////////////////////////////
+//Guiters and Seter
+
+class Bands{
+    private dataSet:string[]
+    constructor (){
+        this.dataSet=[]
+    }
+
+    public get data():string[]{
+        return this.dataSet
+    }
+    
+    public set data(value:string[]){
+        if(Array.isArray(value) && // This condition checks if the value is an Array or not.
+        value.every(el=>
+            typeof el ==='string' //If every element of the array is string.
+        )){                      
+            this.dataSet = value   //Seter cannot return a value
+        }
+        else  {
+            throw new Error ('Param is not an array of string')
+    }
+}
+
+}
+
+const myBands = new Bands()
+myBands.data = ['hey','jau','if']
+console.log(myBands.data) //getter
+console.log(myBands.data=[...myBands.data,'zdfg'])
+myBands.data=['van','hahb',2313]
+
+
+
+// ##################################################################
+//              Index signaturea and key Assertions
+//###################################################################
+
