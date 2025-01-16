@@ -226,7 +226,7 @@ const numberOrSyring = (value:number|string):string =>{
 //###################################################
 
 //Some time you will have information about the type of a value that TypeScript can't know about, this come into way when we are working with the DOM.
-
+//Type Aliases
 type One = string
 type two = number | string
 type Three = 'hello'
@@ -244,9 +244,10 @@ let e = <string | number>'world'
 let addOrConcat = (a:number, b:number,c:'add' | "concat"):number|string =>{
 
 if(c==='add'){
-    return a+b
+    return a+b+c
 }
 
+//if c==='concat" then string will returned
 return "" + a + b;
 
 }
@@ -254,7 +255,19 @@ return "" + a + b;
 
 const myVlal : string = addOrConcat(2,2,'concat') as string
 
-//Be careful TS sees no problem - but a string is returned
+//Be careful TS sees no problem - but a string is returned so this is type assertions.
 const nextVal: number = addOrConcat(2,2,'concat') as number
 
 
+//OVERRULING TS
+// 10 as string
+(10 as unknown) as string
+
+// Excalmation mark is referd to a non null assertion
+//The DOM 
+const img = document.querySelector('img')!
+const myimg = document.getElementById('img') as HTMLImageElement
+const nextImage = <HTMLImageElement>document.getElementById('img') as HTMLImageElement
+
+img.src
+myimg.src
