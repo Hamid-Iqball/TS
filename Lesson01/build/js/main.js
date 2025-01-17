@@ -19,3 +19,11 @@ const todaysNet = (transictions) => {
     return total;
 };
 console.log(todaysNet(todaysTransiction));
+const student = {
+    name: 'Hamid',
+    GPA: 3.5,
+    classess: [100, 200]
+};
+for (const key in student) {
+    console.log(`${key}: ${student[key]}`);
+}

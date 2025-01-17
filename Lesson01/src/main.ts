@@ -457,3 +457,20 @@ const todaysNet = (transictions:TransictionObj):number =>{
 }
 
 console.log(todaysNet(todaysTransiction))
+
+interface Students {
+    [index:string]:number|string |undefined | number[]
+    name:string,
+    GPA:number,
+    classess?:number[]
+}
+
+const student:Students = {
+    name:'Hamid',
+    GPA:3.5,
+    classess:[100,200]
+}
+
+for (const key in student){
+    console.log(`${key}: ${student[key]}`)
+}
