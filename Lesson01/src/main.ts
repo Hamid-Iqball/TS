@@ -272,7 +272,6 @@ const nextImage = <HTMLImageElement>document.getElementById('img') as HTMLImageE
 img.src
 myimg.src
 
-*/
 
 
 // #####################################
@@ -281,14 +280,14 @@ myimg.src
 
 class Coder {
     
-    secondLang! :string
+secondLang! :string
 
-    constructor(
-        public readonly name:string,  // Public is called Data modifier this makes our code a little but DRY.
-        public music:string, 
-        private age:number , // only acessiable in this class
-        protected lang:string ='TypeScript' // Lang can be access inside the class but it can also be access in derived classes as well.This is difference between Private and protected
-    ){
+constructor(
+    public readonly name:string,  // Public is called Data modifier this makes our code a little but DRY.
+    public music:string, 
+    private age:number , // only acessiable in this class
+    protected lang:string ='TypeScript' // Lang can be access inside the class but it can also be access in derived classes as well.This is difference between Private and protected
+){
         this.name=name
         this.music=music
         this.age=age
@@ -316,9 +315,9 @@ class webDev extends Coder {
     ){
         super(name,music,age)
     this.computer = computer
-  }
+}
 
-  public getLang (){
+public getLang (){
     return `I writes in ${this.lang}`
 }
 }
@@ -361,14 +360,14 @@ class Peeps {
     
     public id :number
     
-
+    
     constructor(
         public name:string
     ){
         this.name =name
         this.id = ++Peeps.count
     }
-
+    
 }
 
 const nasar = new Peeps('nasar')
@@ -386,7 +385,7 @@ class Bands{
     constructor (){
         this.dataSet=[]
     }
-
+    
     public get data():string[]{
         return this.dataSet
     }
@@ -394,13 +393,13 @@ class Bands{
     public set data(value:string[]){
         if(Array.isArray(value) && // This condition checks if the value is an Array or not.
         value.every(el=>
-            typeof el ==='string' //If every element of the array is string.
-        )){                      
-            this.dataSet = value   //Seter cannot return a value
-        }
-        else  {
-            throw new Error ('Param is not an array of string')
+        typeof el ==='string' //If every element of the array is string.
+    )){                      
+        this.dataSet = value   //Seter cannot return a value
     }
+    else  {
+        throw new Error ('Param is not an array of string')
+}
 }
 
 }
@@ -412,8 +411,49 @@ console.log(myBands.data=[...myBands.data,'zdfg'])
 myBands.data=['van','hahb',2313]
 
 
+*/
 
 // ##################################################################
-//              Index signaturea and key Assertions
+//              Index signatures and key Assertions
 //###################################################################
 
+
+//Index signnatures: It is a way to define the shape of objects with properties whose names are not known in advance, but the type of the keys and values is known. IT allows you to describe objects that have dynamic or variable property keys.
+
+//Interface for our object, we willc create objects from this.
+// interface TransictionObj{
+//     Pizza:number,
+//     Books:number,
+//     Job:number
+// }
+
+//This is index signature, we can make it readonly as well.
+        interface TransictionObj{
+        [index:string]:number
+        }
+
+
+//This is the obect that we are making from the above interface
+const todaysTransiction :TransictionObj = {
+    Pizza :-10,
+    Books:-4,
+    Job:16
+}
+
+
+console.log(todaysTransiction.Pizza)
+console.log(todaysTransiction['Pizza'])
+
+let prop:string = 'Pizza'
+console.log(todaysTransiction[prop]) // This dynamically accessing the property, TS is complaining about this and this often happens in loops.
+
+const todaysNet = (transictions:TransictionObj):number =>{
+    let total=0;
+    for (const transition in transictions){
+        total +=transictions[transition]
+    }
+
+    return total
+}
+
+console.log(todaysNet(todaysTransiction))
