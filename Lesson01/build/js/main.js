@@ -507,11 +507,29 @@ console.log(isObj([1, 2, 3, 4]));
 console.log(isObj(false));
 console.log(isObj({ name: 'jhon' }));
 console.log(isObj(null));
-//Usecases of generics: one best indication of when to use generics is when the function involces a logic of what this funciton will return.
+//Usecases of generics: one best indication of when to use generics is when the function involves a logic of what this funciton will return.
 const isTrue = (arg) => {
     if (Array.isArray(arg) && !arg.length) {
         return { arg, is: false };
     }
+    if (isObj(arg) && !Object.keys(arg).length) {
+        return { arg, is: false };
+    }
     return { arg, is: !!arg }; // Double negation operator
 };
-console.log(isTrue([]));
+console.log(isTrue({}));
+const checkBoolVlue = (arg) => {
+    if (Array.isArray(arg) && !arg.length) {
+        return { value: arg, is: false };
+    }
+    if (isObj(arg) && !Object.keys(arg)) {
+        return { value: arg, is: false };
+    }
+    return { value: arg, is: !!arg };
+};
+console.log(checkBoolVlue({}));
+const processUser = (user) => {
+    //Process the user with the logic here
+    return user;
+};
+console.log(processUser({ ID: 1, name: 'Hamid' }));

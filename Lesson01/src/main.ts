@@ -520,14 +520,55 @@ console.log(isObj(false))
 console.log(isObj({name:'jhon'}))
 console.log(isObj(null))
 
-//Usecases of generics: one best indication of when to use generics is when the function involces a logic of what this funciton will return.
+//Usecases of generics: one best indication of when to use generics is when the function involves a logic of what this funciton will return.
 
 const isTrue = <T>(arg:T):{arg:T, is:boolean} =>{
     if(Array.isArray(arg) && !arg.length){
         return{arg,is:false}
     }
 
+    if (isObj(arg) && ! Object.keys(arg as keyof T).length){
+        return {arg,is:false}
+    }
+
     return {arg,is: !!arg} // Double negation operator
 }
 
-console.log(isTrue([]))
+console.log(isTrue({}))
+
+
+
+//Let's do it with interface.
+
+interface BoolCheck <T>{
+value:T,
+is:boolean,
+}
+
+const checkBoolVlue = <T>(arg:T):BoolCheck<T>=>{
+    if (Array.isArray(arg) && !arg.length){
+        return {value:arg,is:false}
+    }
+
+
+    if(isObj(arg) && !Object.keys(arg as keyof T)
+    ){
+        return {value:arg, is:false}
+    }
+
+    return {value:arg,is:!!arg}
+}
+
+console.log(checkBoolVlue({}))
+
+
+interface HasId{
+    ID:number,
+}
+
+const processUser = <T extends HasId>(user:T):T =>{
+    //Process the user with the logic here
+    return user
+}
+
+console.log(processUser({ID:1,name:'Hamid'}))
