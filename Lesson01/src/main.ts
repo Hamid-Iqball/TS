@@ -572,3 +572,9 @@ const processUser = <T extends HasId>(user:T):T =>{
 }
 
 console.log(processUser({ID:1,name:'Hamid'}))
+
+const getUsersProperty =<T extends HasId, k extends keyof T>(users:T[], key:k): T[k][]=>{
+return users.map(user=>user[key])
+}
+
+console.log(getUsersProperty([],2))
