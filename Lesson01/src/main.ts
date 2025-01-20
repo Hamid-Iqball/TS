@@ -411,7 +411,7 @@ console.log(myBands.data=[...myBands.data,'zdfg'])
 myBands.data=['van','hahb',2313]
 
 
-*/
+
 
 // ##################################################################
 //              Index signatures and key Assertions
@@ -495,3 +495,39 @@ sideHustle:250,
 for (const revenu in montlyIncome){
     console.log(montlyIncome[revenu as keyof Incomes]) // This is key assertions
 }
+
+*/
+
+// ##################################################################
+//              Generics
+//###################################################################
+
+//Sometimes we don't know what type will be pass into a funciton,interface,typ Aliace and classess etc and generics provide a placeholder a variable. for example;
+
+const stringEcho = (arg:string):string =>arg // The problem with this is that it only accept string.
+
+const echo = <T>(arg:T):T=>arg //This is the more generic type and this works for any other type as well, we can write anything else of T as well.
+
+//example funciton
+
+const isObj = <T>(arg:T):boolean =>{
+    return (typeof arg === 'object' && !Array.isArray(arg) && arg !== null  ) 
+}
+
+console.log(isObj(true))
+console.log(isObj([1,2,3,4]))
+console.log(isObj(false))
+console.log(isObj({name:'jhon'}))
+console.log(isObj(null))
+
+//Usecases of generics: one best indication of when to use generics is when the function involces a logic of what this funciton will return.
+
+const isTrue = <T>(arg:T):{arg:T, is:boolean} =>{
+    if(Array.isArray(arg) && !arg.length){
+        return{arg,is:false}
+    }
+
+    return {arg,is: !!arg} // Double negation operator
+}
+
+console.log(isTrue([]))
