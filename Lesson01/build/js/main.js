@@ -7,8 +7,8 @@ const todaysTransiction = {
     Books: -4,
     Job: 16
 };
-console.log(todaysTransiction.Pizza);
-console.log(todaysTransiction['Pizza']);
+// console.log(todaysTransiction.Pizza)
+// console.log(todaysTransiction['Pizza'])
 let prop = 'Pizza';
 console.log(todaysTransiction[prop]); // This dynamically accessing the property, TS is complaining about this and this often happens in loops.
 const todaysNet = (transictions) => {
@@ -26,4 +26,12 @@ const student = {
 };
 for (const key in student) {
     console.log(`${key}: ${student[key]}`);
+}
+const montlyIncome = {
+    salaray: 500,
+    bonus: 100,
+    sideHustle: 250,
+};
+for (const revenu in montlyIncome) {
+    console.log(montlyIncome[revenu]); // This is key assertions
 }

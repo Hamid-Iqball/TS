@@ -428,9 +428,9 @@ myBands.data=['van','hahb',2313]
 // }
 
 //This is index signature, we can make it readonly as well.
-        interface TransictionObj{
-        [index:string]:number
-        }
+interface TransictionObj{
+[index:string]:number
+}
 
 
 //This is the obect that we are making from the above interface
@@ -441,8 +441,8 @@ const todaysTransiction :TransictionObj = {
 }
 
 
-console.log(todaysTransiction.Pizza)
-console.log(todaysTransiction['Pizza'])
+// console.log(todaysTransiction.Pizza)
+// console.log(todaysTransiction['Pizza'])
 
 let prop:string = 'Pizza'
 console.log(todaysTransiction[prop]) // This dynamically accessing the property, TS is complaining about this and this often happens in loops.
@@ -473,4 +473,25 @@ const student:Students = {
 
 for (const key in student){
     console.log(`${key}: ${student[key]}`)
+}
+
+///////////////////////////////////////////////////
+
+// interface Incomes {
+//     [key:string] :number
+// }
+
+
+type streams = 'salaray'|'bonus'|'sideHustle'
+
+type Incomes = Record<streams,number|string>
+
+const montlyIncome: Incomes = {
+salaray:500,
+bonus:100,
+sideHustle:250,
+}
+
+for (const revenu in montlyIncome){
+    console.log(montlyIncome[revenu as keyof Incomes]) // This is key assertions
 }
