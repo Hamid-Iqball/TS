@@ -496,7 +496,6 @@ for (const revenu in montlyIncome){
     console.log(montlyIncome[revenu as keyof Incomes]) // This is key assertions
 }
 
-*/
 
 // ##################################################################
 //              Generics
@@ -526,11 +525,11 @@ const isTrue = <T>(arg:T):{arg:T, is:boolean} =>{
     if(Array.isArray(arg) && !arg.length){
         return{arg,is:false}
     }
-
+    
     if (isObj(arg) && ! Object.keys(arg as keyof T).length){
         return {arg,is:false}
     }
-
+    
     return {arg,is: !!arg} // Double negation operator
 }
 
@@ -541,21 +540,21 @@ console.log(isTrue({}))
 //Let's do it with interface.
 
 interface BoolCheck <T>{
-value:T,
-is:boolean,
+    value:T,
+    is:boolean,
 }
 
 const checkBoolVlue = <T>(arg:T):BoolCheck<T>=>{
     if (Array.isArray(arg) && !arg.length){
         return {value:arg,is:false}
     }
-
-
+    
+    
     if(isObj(arg) && !Object.keys(arg as keyof T)
     ){
         return {value:arg, is:false}
     }
-
+    
     return {value:arg,is:!!arg}
 }
 
@@ -574,7 +573,39 @@ const processUser = <T extends HasId>(user:T):T =>{
 console.log(processUser({ID:1,name:'Hamid'}))
 
 const getUsersProperty =<T extends HasId, k extends keyof T>(users:T[], key:k): T[k][]=>{
-return users.map(user=>user[key])
+    return users.map(user=>user[key])
 }
 
 console.log(getUsersProperty([],2))
+*/
+
+
+// ##################################################################
+//              Utility Type
+//###################################################################
+
+//Definition: Utility types in Typescript are prededfined types provided by th language that allow you to manupulate and transform other types.They are designed to simply common type transformations, making it easier to work with the manage complex types.
+
+//1) Partial:Sometimes , we want to update or work with only a subset of properties from an object without requiring all of them. Partial<Type> Allows  us to create such partial objects.
+interface Assignment{
+studentId:string,
+title:string,
+grade:number,
+verified?:boolean,
+}
+
+const updateAssignment = (assign:Assignment, propstoUpdate:Partial<Assignment>):Assignment=>{
+return {...assign, ...propstoUpdate}
+}
+
+
+const assign1:Assignment={
+    studentId:'Hamid Iqbal',
+    title:'Final Project',
+    grade:0
+}
+
+console.log(updateAssignment(assign1,{grade:90}))
+const assignGrade:Assignment = updateAssignment(assign1,{grade:95})
+
+console.log(assignGrade)
