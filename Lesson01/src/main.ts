@@ -632,12 +632,68 @@ const hexColorMap:Record<string,string>={
     blue:"0000FF"
 }
 
-type student ="Sara" | "Kelly"
+type Students ="Sara" | "Kelly"
 type letterGrades = "A"|"B"|"C"|"D"|"U"
 
 
-const finalGrade:Record <student, letterGrades>={
+const finalGrade:Record <Students, letterGrades>={
 Sara:'B',
 Kelly:'U'
 }
 
+interface Grades {
+    assign1:number,
+    assign2:number,
+}
+
+//It ensures that only defined studensts can have grades
+const gradeData:Record<Students,Grades>= {
+    Sara:{
+        assign1: 85, assign2:93
+    },
+    Kelly:{assign1:45,assign2:65}
+}
+
+//Pick and Omit: They works only with interface
+//Pick allows us to pick 
+type AssignmentResult = Pick<Assignment, "studentId" | "grade">
+
+const score:AssignmentResult={
+    studentId:"K123",
+    grade:34
+}
+
+//Omit just work the opposite of the Pick
+type AssignPreview = Omit<Assignment,"grade"|"verified">
+
+const preview:AssignPreview={
+    studentId:'jsfdbcu',
+    title:'Hamid',
+}
+
+//Exclude and extract: They do not work wiith interface rather work with a strig literal
+
+type adjustedGrade  =Exclude<letterGrades, "U" >
+
+type highGrades  =Extract<letterGrades, "A"|"B">
+
+
+//Nonnullable
+
+type allPossibleGrades = "Dave" |"Jhon" | null| undefined
+type NamesonlY = NonNullable<allPossibleGrades>
+
+//ReturnType
+
+// type newAssign = {title:string ,  points:number}
+
+const createNewAssign = (title:string, points:number)=>{
+    return {title,points}
+}
+
+type NewAssign = ReturnType<typeof createNewAssign>
+
+//This is very usefull and specially with the functions tht you did not create yourself, for example a library
+
+const tsAssign:NewAssign = createNewAssign("Machine learning" , 23)
+console.log(tsAssign)

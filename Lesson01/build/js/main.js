@@ -27,3 +27,26 @@ const finalGrade = {
     Sara: 'B',
     Kelly: 'U'
 };
+//It ensures that only defined studensts can have grades
+const gradeData = {
+    Sara: {
+        assign1: 85, assign2: 93
+    },
+    Kelly: { assign1: 45, assign2: 65 }
+};
+const score = {
+    studentId: "K123",
+    grade: 34
+};
+const preview = {
+    studentId: 'jsfdbcu',
+    title: 'Hamid',
+};
+//ReturnType
+// type newAssign = {title:string ,  points:number}
+const createNewAssign = (title, points) => {
+    return { title, points };
+};
+//This is very usefull and specially with the functions tht you did not create yourself, for example a library
+const tsAssign = createNewAssign("Machine learning", 23);
+console.log(tsAssign);
