@@ -608,4 +608,36 @@ const assign1:Assignment={
 console.log(updateAssignment(assign1,{grade:90}))
 const assignGrade:Assignment = updateAssignment(assign1,{grade:95})
 
-console.log(assignGrade)
+
+//Required amd Read only
+
+const recordAssignment = (assign:Required<Assignment>):Assignment =>{
+    return assign
+}
+
+const assignVerified:Readonly<Assignment> ={
+
+    ...assignGrade,verified:true
+}
+
+
+
+console.log(recordAssignment({...assignGrade, verified:true}))
+
+
+//3) Record type: It allows to define object types where you specify both the keys and the values.
+const hexColorMap:Record<string,string>={
+    red:'FF0000',
+    green:"00FF00",
+    blue:"0000FF"
+}
+
+type student ="Sara" | "Kelly"
+type letterGrades = "A"|"B"|"C"|"D"|"U"
+
+
+const finalGrade:Record <student, letterGrades>={
+Sara:'B',
+Kelly:'U'
+}
+
