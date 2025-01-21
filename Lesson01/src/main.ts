@@ -697,3 +697,14 @@ type NewAssign = ReturnType<typeof createNewAssign>
 
 const tsAssign:NewAssign = createNewAssign("Machine learning" , 23)
 console.log(tsAssign)
+
+
+//Parameters
+
+type AssignParams = Parameters<typeof createNewAssign>
+const assignArgs:AssignParams = ['Generics',100]
+
+const tsAssign2:NewAssign = createNewAssign(...assignArgs)
+
+//Awaited - helps us with the ReturnType of a promise
+

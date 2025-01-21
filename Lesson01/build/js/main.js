@@ -50,3 +50,6 @@ const createNewAssign = (title, points) => {
 //This is very usefull and specially with the functions tht you did not create yourself, for example a library
 const tsAssign = createNewAssign("Machine learning", 23);
 console.log(tsAssign);
+const assignArgs = ['Generics', 100];
+const tsAssign2 = createNewAssign(...assignArgs);
+//Awaited - helps us with the ReturnType of a promise
