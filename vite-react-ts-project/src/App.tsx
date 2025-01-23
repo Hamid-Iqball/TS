@@ -1,8 +1,9 @@
+import Heading from "./Components/Heading"
 
 
 function App() {
   return (
-    <div>App</div>
+    <div><Heading title="Hamid Iqbal"/></div>
   )
 }
 
