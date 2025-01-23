@@ -1,10 +1,15 @@
-import React from "react"
+import React, { ReactNode } from "react"
 
-const  Section:React.FC<{title:String}> =({children,title}) => {
- return <section>
+
+type SectionProps={
+    title?:string,
+    children:ReactNode
+}
+const Section = ({children,title}:SectionProps)=>{
+return <section>
     <h2>{title}</h2>
     <h2>{children}</h2>
- </section>
+</section>
 }
 
 export default Section
