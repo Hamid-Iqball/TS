@@ -1,8 +1,13 @@
-import React, { useState } from 'react'
+import { ReactNode } from "react"
 
-function Counter() {
-    const [count,setCount] = useState<number>(1)
-    const hanldeCount  =()=>{
+type CountProps = {
+  setCount:React.Dispatch<React.SetStateAction<number>>,
+  children:ReactNode
+}
+
+function Counter({setCount, children}:CountProps) {
+
+  const hanldeCount  =()=>{
         setCount(prev=>prev+1)
   }
   function decreament(){
@@ -11,7 +16,7 @@ function Counter() {
   return (
     <div style={{display:"flex", gap:'10px', justifyContent:"center", alignItems:'center'}}>
     <button onClick={decreament}>-</button>
-    <h1>Count is {count}</h1>
+    <h1>Count is {children}</h1>
     <button onClick={hanldeCount}>+</button>
     </div>
   )
