@@ -5,7 +5,7 @@ type SectionProps={
     title?:string,
     children:ReactNode
 }
-const Section = ({children,title}:SectionProps)=>{
+const Section = ({children,title="My SubHeading"}:SectionProps)=>{
 return <section>
     <h2>{title}</h2>
     <h2>{children}</h2>
