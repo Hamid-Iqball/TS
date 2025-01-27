@@ -1,12 +1,15 @@
-
+import Counter from "./Counter";
 
 function App() {
   return (
-    <div>
-    <h2>Use Reducer in TypeScript in React</h2>
-
-    </div>
-  )
+    <Counter>
+      {(num) => (
+        <span style={{ color: num % 2 === 0 ? "green" : "red" }}>
+          Count is {num}
+        </span>
+      )}
+    </Counter>
+  );
 }
 
-export default App
+export default App;
